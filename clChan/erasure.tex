@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+%Title          :   Erasure channel
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   Binary Erasure Channel: Bit sent from input to output is
+%                   erasred and mapped to e with probability p.
+
+\begin{document}
+\pagestyle{empty}
+
+%
+\tikzstyle{int}=[circle,draw, fill=none, minimum size=1em]
+
+\begin{tikzpicture}[node distance=.75cm,auto,>=latex']
+%   Input
+    \node [int] at (0,0) (a) {$0$};
+    \node [int] at (0,3) (b) {$1$};
+    \node [below of = a] (InText) {Input};
+
+%   Output
+    \node [int] at (3,3) (c) {$1$};
+    \node [int] at (3,0) (d) {$0$};
+    \node [int] at (3,1.5) (e) {$e$};
+    \node [below of = d] (InText) {Output};
+    
+    \path[->] (a) edge node [above] {$1-p$} (d);
+    \path[->] (a) edge node [above = .1cm] {$p$} (e);
+
+    \path[->] (b) edge node [above] {$1-p$} (c);
+    \path[->] (b) edge node [below = .1cm] {$p$} (e);
+    \end{tikzpicture}
+
+\end{document}
