@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning}
+\newcommand{\sg}{\sigma }
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\mte}[2]{\langle#1|#2|#1\rangle }
+\newcommand{\BC}{{\mathcal B}}
+\newcommand{\CC}{{\mathcal C}}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+ 
+%Title          :   Qubit dephasing channel and its complement
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   For a qubit input with Bloch vector r_a = (x,y,z), the
+%                   dephasing channel has output Bloch vector 
+%                   r_b = (x, (1-2p)y, (1-2p)z), and complementary output vector
+%                   r_c = (2z sqrt(p(1-p)), 0, 1-2p)
+%                   where p = 0.3
+%                   The input Bloch sphere with origin O. Unit length Bloch vectors
+%                   along +x and −x axis represent [-] and [+] respectively. In
+%                   this notation [psi] is |psi><psi|, |+> = (|0> + |1>)/sqrt(2)
+%                   |-> = (|0> - |1>)/sqrt(2)
+\begin{document}
+\pagestyle{empty}
+
+\begin{tikzpicture}[scale=2]
+
+%X Axis
+\path (0.1,0) edge[line width=.1mm, ->] node[minimum size=.1mm, fill=white, anchor=center, pos=0.75, font=\normalsize] {$+x$}(1,0);    
+\path (-0.1,0) edge[line width=.1mm, ->] node[minimum size=.1mm, fill=white, anchor=center, pos=0.75, font=\normalsize] {$-x$}(-1,0);    
+
+% A input Sphere
+\coordinate (O) at (0, 0) {};
+\draw [dashed, line width=.05mm] (O) ellipse(.25 and 1);
+\draw[line width=.05mm] (O) circle(1);
+%
+\node[] at (0,0) (Or) {O};
+\node[] at (0,1.2) (Otk) {\normalsize $[0]$};
+\node[] at (0,-1.2) (Obk) {\normalsize $[1]$};
+\node[] at (1.2,0) (Otk) {\normalsize $[+]$};
+\node[] at (-1.2,0) (Obk) {\normalsize $[-]$};
+    
+% B output 
+\draw [line width=.1mm, red] (O) ellipse(1 and .4);
+\draw [line width=.1mm, red, dashed] (O) ellipse(.1 and .4);
+
+%B output label
+
+% C output
+\coordinate (Oc1) at (.92, .405) {};
+\coordinate (Oc2) at (-.92, .405) {};
+\path[line width=.1mm, blue] (Oc1) edge (Oc2);    
+
+%C output label
+\node[] at (1.1, .405) (Otk) {\normalsize $[\chi_0]$};
+\node[] at (-1.1, .405) (Obk) {\normalsize $[\chi_1]$};
+
+%
+\node[red] at (2.5, 0.8) (BC) {\normalsize $\BC(\rho) = (1-p)\rho + p \sg_x \rho \sg_x$};
+\node[red] at (2.08,0.4) (sg) {\normalsize $\sg_x = \left( \begin{matrix} 0&1\\1&0
+\end{matrix} \right)$ };
+\node[blue] at (2.85,-.5) (CC) {\normalsize $\CC(\rho) = \mte{+}{\rho}\, [\chi_+] + \mte{-}{\rho}\, [\chi_-]$};
+\node[blue] at (2.52,-.8) (chi) {\normalsize $\ket{\chi_{\pm}} = \sqrt{1-p} \; \ket{0} \pm \sqrt{p} \; \ket{1}$};
+
+\node[align=left] at (1,-1.75) () {\normalsize Caption: Enclosed inside a Bloch sphere
+    (in black), an ellipsoid (in red) and line (in blue)\\ representing the locus
+    of Bloch vectors of $\BC$ and $\CC$ respectively where $p = 0.3$};
+
+\end{tikzpicture}
+
+\end{document}
+
+
