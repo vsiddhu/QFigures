@@ -1,0 +1,35 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+%Title          :   Bit Flip channel
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   Binary Symmetric Channel: Bit sent from input to output is
+%                   flipped with probability p.
+
+\begin{document}
+\pagestyle{empty}
+
+%
+\tikzstyle{int}=[circle,draw, fill=blue!20, minimum size=1em]
+
+\begin{tikzpicture}[node distance=2.5cm,auto,>=latex']
+    \node [int] at (0,0) (a) {$0$};
+    \node [int] at (0,1.5) (b) {$1$};
+    \node [int] at (3,1.5) (c) {$1$};
+    \node [int] at (3,0) (d) {$0$};
+    
+    \path[->] (a) edge node [below] {$1-p$} (d);
+    \path[->] (a) edge node [below] {$p$} (c);
+    \path[dashed,->] (b) edge node [above] {$1-p$} (c);
+    \path[dashed, ->] (b) edge node [above] {} (d);
+    \end{tikzpicture}
+
+\end{document}
