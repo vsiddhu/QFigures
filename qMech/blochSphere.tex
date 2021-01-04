@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+ 
+\newcommand{\dya}[1]{|#1\rangle\langle#1|}
+ 
+%Title          :   Qubit Bloch sphere with two vectors along the z axis
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   The Bloch sphere with origin O. Unit length Bloch vectors
+%                   along +z and −z axis represent [0] and [1] respectively. In
+%                   this notation [0] is |0><0| and [1] is |1><1|.
+
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{tikzpicture}[scale=2]
+
+%Z Axis
+\path (0,0.1) edge[line width=.1mm, ->] node[minimum size=.1mm, fill=white, anchor=center, pos=0.75, font=\normalsize] {$+z$}(0,1);    
+\path (0,-0.1) edge[line width=.1mm, ->] node[minimum size=.1mm, fill=white, anchor=center, pos=0.75, font=\normalsize] {$-z$}(0,-1);    
+
+% A input Sphere
+\coordinate (O) at (0, 0) {};
+\draw [dashed, line width=.05mm] (O) ellipse(1 and .25);
+\draw[line width=.05mm] (O) circle(1);
+%
+\node[] at (0,0) (Or) {O};
+\node[] at (0,1.2) (Otk) {\normalsize $[0]$};
+\node[] at (0,-1.2) (Obk) {\normalsize $[1]$};
+    
+
+\end{tikzpicture}
+
+\end{document}
+
