@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\newcommand{\AC}{{\mathcal A}}
+\newcommand{\DC}{{\mathcal D}}
+\newcommand{\EC}{{\mathcal E}}
+\newcommand{\HC}{{\mathcal H}}
+\newcommand{\NC}{{\mathcal N}}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+%Title          :   Encoding and Decoding across k uses of a Quantum Channel
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   Quantum states from a Hilbert space H are encoded via E(k)
+%                   into the input of k parallel uses of a channel B and 
+%                   decoded from the joint output via D(k)
+
+\begin{document}
+\pagestyle{empty}
+
+\tikzstyle{int}=[circle,draw, minimum size=3.25em]
+\tikzstyle{chan1}=[rectangle,draw,  minimum width=1.3cm, minimum height=6cm]
+\tikzstyle{chan2}=[rectangle,draw,  minimum width=.8cm, minimum height=.8cm]
+\tikzstyle{txBox} = [draw=none, fill=none, minimum height=1em, minimum width=1em]
+
+\begin{tikzpicture}[node distance=.75cm,auto,>=latex']
+    \node [int] at (0,0) (a) {$\HC^{(k)}$};
+    \node [below of = a] (aT) {Input};
+
+    \node [chan1] at (2,0) (b) {$\EC^{(k)}$};
+
+    \node [txBox] at (3.2,0) (c) {$k$};
+    \node [chan2] at (4,2.5) (c1) {$\NC$};
+    \node [chan2] at (4,1.5) (c3) {$\NC$};
+    \node [chan2] at (4,-2.5) (c2) {$\NC$};
+    
+    \node [chan1] at (6,0) (d) {$\DC^{(k)}$};
+
+    \node [int] at (8,0) (e) {$\HC^{(k)}$};
+    \node [below of = e] (aT) {Output};
+    
+    \path[->] (a) edge              node         {} (b);
+    \draw[->, dotted, thick] (c) -- (3.2,2.5) ;
+    \draw[->, dotted, thick] (c) -- (3.2,-2.5) ;
+    
+    \draw[->] (2.65,2.5) -- (c1) ;
+    \draw[->] (2.65,1.5) -- (c3) ;
+    \draw[->] (2.65,-2.5) -- (c2) ;
+    \draw[->] (c1) -- (5.35,2.5) ;
+    \draw[->] (c3) -- (5.35,1.5) ;
+    \draw[->] (c2) -- (5.35,-2.5) ;
+
+    \path[dotted, thick] (c3) edge              node  {} (c2);
+    \path[->] (d) edge              node         {} (e);
+
+    \end{tikzpicture}
+\end{document}
