@@ -1,5 +1,5 @@
 # QFigures
-A repository containing some figures related to (qauntum) information (theory).
+A repository containing some figures related to (qauntum) (information) (theory).
 
 ## License
 
