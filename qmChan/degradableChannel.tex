@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+\newcommand{\BC}{{\mathcal B}}
+\newcommand{\CC}{{\mathcal C}}
+\newcommand{\DC}{{\mathcal D}}
+\newcommand{\HC}{{\mathcal H}}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\ot}{\otimes }
+\newcommand{\ad}{^\dagger }
+\newcommand{\Tr}{{\rm Tr}}
+
+%Title          :   (Anti)Degradable quantum channels
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+
+\begin{document}
+\pagestyle{empty}
+
+%
+\tikzstyle{int}=[circle,draw, fill=white, minimum size=.1em]
+
+\begin{tikzpicture}[node distance=0.5cm,auto,>=latex']
+    \node [int] at (0,-3.4) (a) {$\HC_a$};
+    \node [below of = a, node distance=.6cm, font=\footnotesize] (aT) {in};
+    \node [int] at (2.5,-2.4) (b) {$\HC_b$};
+    \node [above of = b, node distance=.6cm, font=\footnotesize] (bT) {out};
+    \node [int] at (2.5,-4.4) (c) {$\HC_c$};
+    \node [below of = c, node distance=.6cm, font=\footnotesize] (cT) {env.};
+
+    \path[->]				(a) edge [bend left]  	node              {$\BC$} (b);
+    \path[->]				(a) edge [bend right] 	node [below left] {$\CC$} (c);
+    \path[->, blue!70]			(b) edge [bend left] 	node [right] {$\DC$} (c);
+    
+    \node[align = left, font = \footnotesize] at (1.4,-5.45) (cap_c)
+    {Channel $\BC$ is \textbf{degradable} and $\CC$ \textbf{antidegradable}\\if
+    there is another channel \textcolor{blue!70}{$\DC$} such that $\CC = \DC
+    \circ \BC$};
+    
+    \end{tikzpicture}
+\end{document}
