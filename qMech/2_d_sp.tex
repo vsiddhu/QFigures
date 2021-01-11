@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+% Define Math commands
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\al}{\alpha }
+
+%Title          :   Qubit Bloch sphere with two pure states
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   The Bloch sphere with two non-orthogonal kets. 
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{tikzpicture}[scale=1]
+    %INPUT SPHERE
+    \coordinate (O) at (0, 0) {};
+    \draw [dashed, thin] (O) ellipse(1 and .5);
+    \draw[thin] (O) circle(1);
+    % Projections onto sphere
+    \coordinate (Ps) at (0,1) {};
+    % Sphere poles
+    \coordinate (N) at (.85,-.5) {};
+    % Chord
+    \draw[] (N)--(Ps);
+    \draw[dashed] (N)--(O);
+    \draw[dashed] (O)--(Ps);
+%        % labels placed last
+    \begin{scope}[inner sep=2pt]
+    \node [] at (Ps) [above] {\footnotesize $\ket{\al_1}$};
+    \node [right of =N, node distance=.5cm] (xa) {\footnotesize $\ket{\al_2}$};
+    \end{scope}
+    % dot marks
+
+\end{tikzpicture}
+
+\end{document}
