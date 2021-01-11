@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+\newcommand{\BC}{{\mathcal B}}
+\newcommand{\CC}{{\mathcal C}}
+\newcommand{\HC}{{\mathcal H}}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\ot}{\otimes }
+\newcommand{\ad}{^\dagger }
+\newcommand{\Tr}{{\rm Tr}}
+
+%Title          :   Isometry generates a pair of quantum channels
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+
+\begin{document}
+\pagestyle{empty}
+
+%
+\tikzstyle{int}=[circle,draw, fill=white, minimum size=.1em]
+\tikzstyle{Jbox} = [draw=black, fill=blue!20, minimum height=.8cm, minimum width=.8cm]
+
+\begin{tikzpicture}[node distance=0.5cm,auto,>=latex']
+    \node [int] at (4.5,1) (a) {$\HC_a$};
+    \node [above of = a, node distance=.6cm] (aT) {\footnotesize in};
+    \node [Jbox] at (6.3,1) (b) {$J$};
+    \node [int] at (8,2) (c) {$\HC_b$};
+    \node [below of = c, node distance=.6cm, font=\footnotesize] (bT) {out};
+    \node [int] at (8,0) (d) {$\HC_c$};
+    \node [above of = d, node distance=.6cm, font=\footnotesize] (cT) {env.};
+    
+    \path[->] (a) edge              node         {} (b);
+    \path[->] (a) edge [bend left]  node         {$\BC$} (c);
+    \path[->] (a) edge [bend right] node [below] {$\CC$} (d);
+    \path[->] (b) edge              node         {} (c);
+    \path[->] (b) edge              node         {} (d);
+
+%    \node at (6.3,-.5) {\fontsize{5}{5}\textbf{(b)}};
+    \node[align = left, font = \footnotesize] at (7,-1.25) (cap_b) {$J$ defines
+    a pair of channels:\\ $\BC(\rho) \equiv \Tr_c(J \rho J^\dag)$ to the output
+    and\\$\CC(\rho) \equiv \Tr_b(J\rho J\dag)$ to the environment};
+%    
+    \end{tikzpicture}
+\end{document}
