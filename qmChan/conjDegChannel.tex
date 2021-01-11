@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+\newcommand{\BC}{{\mathcal B}}
+\newcommand{\CC}{{\mathcal C}}
+\newcommand{\DC}{{\mathcal D}}
+\newcommand{\HC}{{\mathcal H}}
+\newcommand{\TC}{{\mathcal T}}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\ot}{\otimes }
+\newcommand{\ad}{^\dagger }
+\newcommand{\Tr}{{\rm Tr}}
+
+%Title          :   Conjugagte degradable quantum channels
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   See J. Math. Phys. 51:072201, 2010/arXiv:0909.3297
+%                   by K. Bradler, N. Dutil, P. Hayden, A. Muhammad  
+
+\begin{document}
+\pagestyle{empty}
+
+%
+\tikzstyle{int}=[circle,draw, fill=white, minimum size=.1em]
+
+\begin{tikzpicture}[node distance=0.5cm,auto,>=latex']
+    \node [int] at (5,-3.4) (a) {$\HC_a$};
+    \node [below of = a, node distance=.6cm, font=\footnotesize] (aT) {in};
+    \node [int] at (7.5,-2.4) (b) {$\HC_b$};
+    \node [above of = b, node distance=.6cm, font=\footnotesize] (bT) {out};
+    \node [int] at (7.5,-4.4) (c) {$\HC_c$};
+    \node [below of = c, node distance=.6cm, font=\footnotesize] (cT) {env.};
+    \node [int] at (9.5,-3.4) (cc) {$\HC_{\bar{c}}$};
+    
+    \path[->]			(a) edge [bend left]  	node              {$\BC$} (b);
+    \path[->]			(a) edge [bend right] 	node [below left] {$\CC$} (c);
+    \path[->, red]		(c) edge [bend right]	node [below right] {$\TC$} (cc);
+    \path[->, blue!70]  (b) edge [bend left] 	node [above right] {$\bar{\DC}$} (cc);
+    
+    \node[align = left, font = \footnotesize] at (7.25,-6) (cap_c)
+    {$\BC$ is \textbf{conjugate-degradable} and \\ 
+    $\CC$ \textbf{conjugate-antidegradable}\\
+    if there is another channel ${\color{blue!70} \bar{\DC}}$ s.t.\\
+    ${\color{red}\TC} \circ \CC = {\color{blue!70}\bar{\DC}}
+    \circ \BC$, where ${\color{red}\TC}$ is transpose};
+    \end{tikzpicture}
+\end{document}
