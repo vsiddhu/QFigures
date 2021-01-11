@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\usepackage{verbatim}
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{.5mm}
+
+\newcommand{\HC}{{\mathcal H}}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\ot}{\otimes }
+
+%Title          :   Unitary generating an isometry
+%Author         :   Vikesh Siddhu
+%Email          :   vsiddhu@andrew.cmu.edu
+%Description    :   Unitary U from bipartite input a-e to b-c spaces. Fixing
+%                   the e input of U gives an isometry J from a to b-c.
+
+
+\begin{document}
+\pagestyle{empty}
+
+\tikzstyle{int}=[circle,draw, fill=white, minimum size=.1em]
+\tikzstyle{Jbox} = [draw=black, fill=blue!20, minimum height=.8cm, minimum width=.8cm]
+
+\begin{tikzpicture}[node distance=0.5cm,auto,>=latex']
+% Figure (a): Unitary
+    \node [int] at (0,1) (a) {$\HC_a$};
+    \node [above of = a, node distance=.6cm] (aT) {\footnotesize in};
+    \node [] at (0,0) (e) {$\ket{e_0}$};
+    \node [Jbox] at (1.3,1) (b) {$U$};
+    \node [int] at (2.5,2) (c) {$\HC_b$};
+    \node [below of = c, node distance=.6cm] (bT) {\footnotesize out};
+    \node [int] at (2.5,0) (d) {$\HC_c$};
+    \node [above of = d, node distance=.6cm] (bT) {\footnotesize env.};
+    
+    \path[->] (a) edge              node         {} (b);
+    \path[->] (e) edge              node         {} (b);
+    \path[->] (b) edge              node         {} (c);
+    \path[->] (b) edge              node         {} (d);
+    
+    \node[align = left, font=\footnotesize] at (1.2, -1.2) (cap_a) 
+    {Unitary $U:\HC_a \ot \HC_e \mapsto \HC_b \ot \HC_c$ \\ defines an isometry
+    $J:\HC_a \mapsto \HC_b \ot \HC_c$ \\ with $J\ket{\psi} = U \ket{\psi} \ot
+    \ket{e_0}$};
+    
+    \end{tikzpicture}
+\end{document}
